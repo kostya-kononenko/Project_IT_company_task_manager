@@ -41,11 +41,12 @@ class TaskTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ["name",
-                    "descriptions",
-                    "deadline",
-                    "is_completed",
-                    ]
+    list_display = [
+        "name",
+        "descriptions",
+        "deadline",
+        "is_completed",
+    ]
     search_fields = ("name",)
     list_filter = ("name",)
     date_hierarchy = "deadline"
