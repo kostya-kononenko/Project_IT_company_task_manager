@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Are you shore to want delete workers {{ worker.first_name }} {{ worker.last_name }}?</h1>
+  <form action="" method="post">
+    {% csrf_token %}
+
+    <input type="submit" value="Yes" class="btn btn-danger">
+  <a href="{% url "task_manager:worker-list" %}" class="btn btn-success">No</a>
+
+  </form>
+{% endblock %}

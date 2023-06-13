@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ task.name }} {{ task.descriptions }} {{ task.deadline }}
+
+      {% if user in task.assignees.all %}
+        <form method="POST"
+          action="{% url 'task_manager:task-worker-update' task.pk %}">
+          {% csrf_token %}
+          <button class="btn btn-danger">
+           Delete me from this task
+          </button>
+        </form>
+        {% else %}
+        <form method="POST"
+          action="{% url 'task_manager:task-worker-update' task.pk %}">
+          {% csrf_token %}
+          <button class="btn btn-info">
+           Assign me to this task
+          </button>
+        </form>
+
+      {% endif %}
+
+    <a href="{% url 'task_manager:task-delete' pk=task.id %}" class="btn btn-warning">
+      Delete task
+    </a>
+
+    <a href="{% url 'task_manager:task-update' pk=task.id %}" class="btn btn-danger">
+      Update task
+    </a>
+  </h1>
+{#  <p>Manufacturer: ({{ car.manufacturer.name }}, {{ car.manufacturer.country }})</p>#}
+  <h1>Workers in task</h1>
+  <hr>
+  <ul>
+    {% for worker in task.assignees.all %}
+      <li>{{ worker.username }} ({{ worker.first_name }} {{ worker.last_name }})</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
