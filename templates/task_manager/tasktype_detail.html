@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    {{ tasktype.name }}
+  </h1>
+    <br>
+    <a href="{% url 'task_manager:task-types-delete' pk=tasktype.id %}" class="btn btn-danger">Delete task type</a>
+    <a href="{% url 'task_manager:task-types-update' pk=tasktype.id %}" class="btn btn-warning">Update task type</a>
+    <br><br><br>
+
+  <div class="ml-3">
+    <h4>Number of workers with this task type - {{ tasktype.worker_set.count }}</h4>
+
+    {% for worker in tasktype.worker_set.all %}
+        <li>{{ worker.username }} ({{ worker.first_name }} {{ worker.last_name }})</li>
+
+    {% empty %}
+      <p>No workers with this task type!</p>
+    {% endfor %}
+  </div>
+{% endblock %}

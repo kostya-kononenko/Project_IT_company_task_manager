@@ -17,7 +17,7 @@
   <div class="ml-3">
     <h4>Tasks</h4>
 
-    {% for task in worker.tasks.all %}
+    {% for tasks in task.workers.all %}
         <hr>
         <p><strong>Name:</strong> {{ task.name }}</p>
         <p><strong>Description:</strong> {{ task.description }}</p>

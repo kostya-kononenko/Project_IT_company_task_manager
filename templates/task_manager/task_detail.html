@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    {{ task.name }} {{ task.descriptions }} {{ task.deadline }}
+    <p>Task name: {{ task.name }}</p>
+    <p>Task descriptions: {{ task.descriptions }}</p>
+    <p>Task deadline: {{ task.deadline }}</p>
 
       {% if user in task.assignees.all %}
         <form method="POST"
@@ -22,21 +23,26 @@
         </form>
 
       {% endif %}
-
-    <a href="{% url 'task_manager:task-delete' pk=task.id %}" class="btn btn-warning">
-      Delete task
-    </a>
-
-    <a href="{% url 'task_manager:task-update' pk=task.id %}" class="btn btn-danger">
-      Update task
-    </a>
-  </h1>
-{#  <p>Manufacturer: ({{ car.manufacturer.name }}, {{ car.manufacturer.country }})</p>#}
-  <h1>Workers in task</h1>
-  <hr>
-  <ul>
+  <br><br>
+  <p>Workers in task</p>
+  <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Position</th>
+      </tr>
     {% for worker in task.assignees.all %}
-      <li>{{ worker.username }} ({{ worker.first_name }} {{ worker.last_name }})</li>
+      <tr>
+      <td>{{ worker.id }}</td>
+      <td>{{ worker.username }}</td>
+      <td>{{ worker.first_name}}</td>
+      <td>{{ worker.last_name }}</td>
+      <td>{{ worker.position }}</td>
+      </tr>
     {% endfor %}
-  </ul>
+    </table>
+     <a href="{% url "task_manager:task-list" %}" class="btn btn-success">Back</a>
+
 {% endblock %}

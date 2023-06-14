@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Positions list</h1>
+  <br><br>
+  {% if position_list %}
+    <a href="{% url 'task_manager:position-create' %}" class="btn btn-success"> Create position</a>
+    <br><br>
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name position</th>
+        <th>Update position</th>
+        <th>Delete position</th>
+      </tr>
+      {% for position in position_list %}
+        <tr>
+        <td>{{ position.id }}</td>
+        <td><a href="{% url "task_manager:position-detail" pk=position.id %} ">{{ position.name }}</a></td>
+        <td><a style="color: green" href="{% url "task_manager:position-update" pk=position.id %} ">Update</a></td>
+          <td><a style="color: red" href="{% url "task_manager:position-delete" pk=position.id %} ">Delete</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>There are no position</p>
+  {% endif %}
+{% endblock %}

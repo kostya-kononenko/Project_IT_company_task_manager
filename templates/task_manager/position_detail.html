@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ position.name }}</h1>
+
+  <div class="ml-3">
+    <h4>Number of workers with this positions - {{ position.worker_set.count }}</h4>
+
+    {% for worker in position.worker_set.all %}
+        <li>{{ worker.username }} ({{ worker.first_name }} {{ worker.last_name }})</li>
+
+    {% empty %}
+      <p>No workers on this position!</p>
+    {% endfor %}
+  </div>
+{% endblock %}
