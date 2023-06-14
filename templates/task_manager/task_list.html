@@ -1,11 +1,18 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
+
 
 {% block content %}
   <h1>Tasks list</h1>
   <br>
-  <h4>All tasks: {{ task_list.count }} </h4>
-  <h4>Close tasks: {{ task_list.count }} </h4>
-  <h4>Current tasks: {{ task_list.count }}</h4>
+  <form action="" method="get" class="form-inline">{{ search_form|crispy }}
+  <input class="btn btn secondary" type="submit" value="🔎" ></form>
+  <br>
+  <p>All tasks: {{ count_all_task }} </p>
+  <p>Completed tasks: {{ count_completed_task }} </p>
+  <p>Current tasks: {{ count_current_task }}</p>
+
+
 
     <br><br>
   {% if task_list %}
