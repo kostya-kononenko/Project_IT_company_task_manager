@@ -88,6 +88,13 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
     paginate_by = 5
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(WorkerListView, self).get_context_data(**kwargs)
+        context["count_all_workers"] = Worker.objects.all().count()
+        context["count_worker_with_completed_task"] = Worker.objects.filter(workers__is_completed=True).distinct().count()
+        context["count_worker_with_current_task"] = Worker.objects.filter(workers__is_completed=False).distinct().count()
+        return context
+
 
 class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = Worker

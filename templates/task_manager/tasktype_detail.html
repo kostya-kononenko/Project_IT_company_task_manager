@@ -5,18 +5,33 @@
     {{ tasktype.name }}
   </h1>
     <br>
-    <a href="{% url 'task_manager:task-types-delete' pk=tasktype.id %}" class="btn btn-danger">Delete task type</a>
-    <a href="{% url 'task_manager:task-types-update' pk=tasktype.id %}" class="btn btn-warning">Update task type</a>
-    <br><br><br>
 
   <div class="ml-3">
-    <h4>Number of workers with this task type - {{ tasktype.worker_set.count }}</h4>
+    <h4>Number of tasks with this task type: {{ tasktype.task_set.count }}</h4>
+  <br><br>
+  <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Descriptions</th>
+        <th>Deadline</th>
+        <th>Is completed</th>
+        <th>Priority</th>
+      </tr>
 
-    {% for worker in tasktype.worker_set.all %}
-        <li>{{ worker.username }} ({{ worker.first_name }} {{ worker.last_name }})</li>
-
+    {% for task in tasktype.task_set.values %}
+      <tr>
+        <td>{{ task.id }}</td>
+        <td>{{ task.name }}</td>
+        <td>{{ task.descriptions }}</td>
+        <td>{{ task.deadline }}</td>
+        <td>{{ task.is_completed }}</td>
+        <td>{{ task.priority }}</td>
+      </tr>
     {% empty %}
-      <p>No workers with this task type!</p>
+      <p>No task with this task type!</p>
     {% endfor %}
+      </table>
+
   </div>
 {% endblock %}
