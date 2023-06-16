@@ -1,22 +1,25 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
+from django.views.generic import CreateView
 
-from task_manager.forms import WorkerUserCreationForm, TaskSearchForm
+from task_manager.forms import WorkerUserCreationForm, TaskSearchForm, RegisterUserForm
 from task_manager.models import Worker, Task, Position, TaskType
 
 
-def index(request):
-    """View function for the home page of the site."""
+# def entrance(request):
+#     return render(request, "registration/login.html")
 
+
+@login_required
+def index(request):
     num_workers = Worker.objects.count()
     num_tasks = Task.objects.count()
     num_positions = Position.objects.count()
-
     num_visits = request.session.get("num_visits", 0)
     request.session["num_visits"] = num_visits + 1
-
     context = {
         "num_workers": num_workers,
         "num_tasks": num_tasks,
@@ -170,3 +173,12 @@ class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = TaskType
     fields = "__all__"
     success_url = reverse_lazy("task_manager:task-types-list")
+
+
+class RegisterUserView(CreateView):
+    """Контролер клас для реєстрації користувача"""
+
+    model = Worker
+    template_name = 'task_manager/register_user.html'
+    form_class = RegisterUserForm
+    success_url = reverse_lazy("task_manager:index")

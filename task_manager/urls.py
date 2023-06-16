@@ -1,12 +1,38 @@
 from django.urls import path
 
-from .views import index, TaskListView, TaskDetailView, TaskCreateView, TaskUpdateView, TaskDeleteView, \
-    TaskWorkerUpdateView, WorkerListView, WorkerDetailView, WorkerCreateView, WorkerDeleteView, WorkerUpdateView, \
-    PositionListView, PositionDetailView, PositionCreateView, PositionDeleteView, PositionUpdateView, TaskTypeListView, \
-    TaskTypeDetailView, TaskTypeCreateView, TaskTypeDeleteView, TaskTypeUpdateView
+from .views import (
+    index,
+    TaskListView,
+    TaskDetailView,
+    TaskCreateView,
+    TaskUpdateView,
+    TaskDeleteView,
+    TaskWorkerUpdateView,
+    WorkerListView,
+    WorkerDetailView,
+    WorkerCreateView,
+    WorkerDeleteView,
+    WorkerUpdateView,
+    PositionListView,
+    PositionDetailView,
+    PositionCreateView,
+    PositionDeleteView,
+    PositionUpdateView,
+    TaskTypeListView,
+    TaskTypeDetailView,
+    TaskTypeCreateView,
+    TaskTypeDeleteView,
+    TaskTypeUpdateView,
+    RegisterUserView)
 
 urlpatterns = [
+
     path("", index, name="index"),
+
+    path('accounts/register/',
+         RegisterUserView.as_view(),
+         name="register"),
+
     path(
         "tasks/",
         TaskListView.as_view(),
