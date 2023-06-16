@@ -29,7 +29,7 @@ urlpatterns = [
 
     path("", index, name="index"),
 
-    path('accounts/register/',
+    path("accounts/register/",
          RegisterUserView.as_view(),
          name="register"),
 
