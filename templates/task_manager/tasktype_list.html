@@ -2,7 +2,11 @@
 
 {% block content %}
   <h1>Task Type list</h1>
-  <br><br>
+  <br>
+   {% block search %}
+     {% include "includes/search.html" %}
+   {% endblock %}
+  <br>
   {% if tasktype_list %}
     <a href="{% url 'task_manager:task-types-create' %}" class="btn btn-success">Create</a>
     <br><br>

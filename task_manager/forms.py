@@ -32,6 +32,30 @@ class TaskSearchForm(forms.Form):
                                "placeholder": "Search task"}))
 
 
+class WorkerSearchForm(forms.Form):
+    username = forms.CharField(max_length=255,
+                               required=False,
+                               label="",
+                               widget=forms.TextInput(attrs={
+                                   "placeholder": "Search worker username"}))
+
+
+class PositionSearchForm(forms.Form):
+    name = forms.CharField(max_length=255,
+                           required=False,
+                           label="",
+                           widget=forms.TextInput(attrs={
+                               "placeholder": "Search position"}))
+
+
+class TaskTypeSearchForm(forms.Form):
+    name = forms.CharField(max_length=255,
+                           required=False,
+                           label="",
+                           widget=forms.TextInput(attrs={
+                               "placeholder": "Search task type"}))
+
+
 class RegisterUserForm(forms.ModelForm):
     email = forms.EmailField(required=True, label="E-mail")
     password1 = forms.CharField(

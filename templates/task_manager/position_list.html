@@ -2,7 +2,11 @@
 
 {% block content %}
   <h1>Positions list</h1>
-  <br><br>
+  <br>
+   {% block search %}
+     {% include "includes/search.html" %}
+   {% endblock %}
+  <br>
   {% if position_list %}
     <a href="{% url 'task_manager:position-create' %}" class="btn btn-success"> Create position</a>
     <br><br>

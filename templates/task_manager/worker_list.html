@@ -2,9 +2,11 @@
 
 {% block content %}
     <h1>Worker List</h1>
+  <br>
    {% block search %}
-        {% include "includes/search.html" %}
-      {% endblock %}
+     {% include "includes/search.html" %}
+   {% endblock %}
+  <br>
 
   <p>Number of all workers: {{ count_all_workers }}  </p>
   <p>Number of workers with completed tasks: {{ count_worker_with_completed_task }} </p>
