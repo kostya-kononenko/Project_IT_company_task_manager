@@ -23,15 +23,11 @@ from .views import (
     TaskTypeCreateView,
     TaskTypeDeleteView,
     TaskTypeUpdateView,
-    RegisterUserView)
+)
 
 urlpatterns = [
 
     path("", index, name="index"),
-
-    path("accounts/register/",
-         RegisterUserView.as_view(),
-         name="register"),
 
     path(
         "tasks/",
@@ -55,7 +51,7 @@ urlpatterns = [
          name="task-delete"),
 
     path(
-        "cars/<int:pk>/assign/",
+        "tasks/<int:pk>/assign/",
         TaskWorkerUpdateView.as_view(),
         name="task-worker-update"
     ),

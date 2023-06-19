@@ -19,8 +19,22 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from task_manager.views import login_view, RegisterUserView
+
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("accounts/", include("django.contrib.auth.urls")),
+
+    path('accounts/login/',
+         login_view,
+         name='login'),
+
+    path('accounts/logout/',
+         login_view,
+         name='logout'),
+
+    path("accounts/register/",
+         RegisterUserView.as_view(),
+         name="register"),
+
     path("", include("task_manager.urls", namespace="task_manager")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

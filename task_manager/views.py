@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
@@ -8,7 +9,10 @@ from django.views.generic import CreateView
 from task_manager.forms import (
     WorkerUserCreationForm,
     TaskSearchForm,
-    RegisterUserForm, WorkerSearchForm, PositionSearchForm, TaskTypeSearchForm
+    RegisterUserForm,
+    WorkerSearchForm,
+    PositionSearchForm,
+    TaskTypeSearchForm, LoginForm
 )
 from task_manager.models import Worker, Task, Position, TaskType
 
@@ -220,8 +224,30 @@ class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("task_manager:task-types-list")
 
 
+def login_view(request):
+    form = LoginForm(request.POST or None)
+
+    msg = None
+
+    if request.method == "POST":
+
+        if form.is_valid():
+            username = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password")
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect("/")
+            else:
+                msg = 'Invalid credentials'
+        else:
+            msg = 'Error validating the form'
+
+    return render(request, "registration/login.html", {"form": form, "msg": msg})
+
+
 class RegisterUserView(CreateView):
     model = Worker
-    template_name = "task_manager/register_user.html"
+    template_name = "registration/register.html"
     form_class = RegisterUserForm
     success_url = reverse_lazy("task_manager:index")
