@@ -107,9 +107,9 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
         context["search_form"] = WorkerSearchForm(initial={"username": name})
         context["count_all_workers"] = Worker.objects.all().count()
         context["count_worker_with_completed_task"] = Worker.objects.filter(
-            workers__is_completed=True).distinct().count()
+            tasks__is_completed=True).distinct().count()
         context["count_worker_with_current_task"] = Worker.objects.filter(
-            workers__is_completed=False).distinct().count()
+            tasks__is_completed=False).distinct().count()
         return context
 
     def get_queryset(self):

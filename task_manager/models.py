@@ -52,7 +52,7 @@ class Task(models.Model):
         max_length=9, choices=Priority.choices, default=Priority.low
     )
     task_type = models.ForeignKey(TaskType, on_delete=models.CASCADE)
-    assignees = models.ManyToManyField(Worker, related_name="workers")
+    assignees = models.ManyToManyField(Worker, related_name="tasks")
 
     def __str__(self):
         return f"{self.name} {self.descriptions} {self.deadline}"
