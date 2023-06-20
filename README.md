@@ -12,8 +12,11 @@ Also in this project, user registration at the entrance is implemented.
 
 ### How to launch the project
 
-1. Clone the repo with the command: 
-
+1. Clone the repo with the command: git@github.com:kostya-kononenko/Project_IT_company_task_manager.git
+2. Install packages with pip: pip install -r requirements.txt
+3. Create database (Django default is sqlite3): python manage.py migrate
+4. Create superuser to use Django admin panel: python manage.py createsuperuser
+5. Run the project: python manage.py runserver
 
 ### Project picture
 
