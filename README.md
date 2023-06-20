@@ -1,5 +1,7 @@
 # Project_IT_company_task_manager
 
+### Website functionality
+
 A site for monitoring the execution of tasks in an IT company.
 This site consists of the following sections:
 1. Task section in which a registered user can create a task, control the execution of each task, change the status of a task, change tasks, delete tasks.
@@ -7,6 +9,13 @@ This site consists of the following sections:
 3. Section of the position in which the registered user can create a new position, view the number of employees with such a position, change the position, delete the position.
 4. Task types section in which a registered user can create a new task type, view the number of tasks with the corresponding task type, change task types, delete task types.
 Also in this project, user registration at the entrance is implemented.
+
+### How to launch the project
+
+1. Clone the repo with the command: 
+
+
+### Project picture
 
 ![Снимок экрана от 2023-06-20 10-06-11](https://github.com/kostya-kononenko/Project_IT_company_task_manager/assets/107486491/fd492f4b-0acf-49c2-b007-16984972e8f9)
 ![Снимок экрана от 2023-06-20 10-05-59](https://github.com/kostya-kononenko/Project_IT_company_task_manager/assets/107486491/aeb09cc2-525b-474d-94a1-d3b69c75af3c)
