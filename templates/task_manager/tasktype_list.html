@@ -1,14 +1,12 @@
-{% extends "base.html" %}
+{% extends "layouts/base-task-manager.html" %}
 
 {% block content %}
-  <h1>Task Type list</h1>
-  <br>
+  <h2>Task Type list</h2>
    {% block search %}
      {% include "includes/search.html" %}
    {% endblock %}
-  <br>
   {% if tasktype_list %}
-    <a href="{% url 'task_manager:task-types-create' %}" class="btn btn-success">Create</a>
+    <a href="{% url 'task_manager:task-types-create' %}" class="btn bg-gradient-dark">Create</a>
     <br><br>
     <table class="table">
       <tr>
@@ -21,11 +19,16 @@
         <tr>
         <td>{{ task_type.id }}</td>
         <td> <a href="{% url "task_manager:task-types-detail" pk=task_type.id %} ">{{ task_type.name }}</a></td>
-        <td><a style="color: green" href="{% url "task_manager:position-update" pk=task_type.id %} ">Update</a></td>
-          <td><a style="color: red" href="{% url "task_manager:position-delete" pk=task_type.id %} ">Delete</a></td>
+        <td><a style="color: green" href="{% url "task_manager:task-types-update" pk=task_type.id %} ">Update</a></td>
+          <td><a style="color: red" href="{% url "task_manager:task-types-delete" pk=task_type.id %} ">Delete</a></td>
         </tr>
       {% endfor %}
-    </table>
+      </table>
+      <div class="container">
+        {% block pagination %}
+          {% include "includes/pagination.html" %}
+        {% endblock %}
+      </div>
   {% else %}
     <p>There are no task types</p>
   {% endif %}

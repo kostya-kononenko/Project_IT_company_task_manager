@@ -96,7 +96,7 @@ class TaskWorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
-    paginate_by = 5
+    paginate_by = 4
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(WorkerListView, self).get_context_data(**kwargs)
@@ -180,7 +180,7 @@ class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
 class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Position
     fields = "__all__"
-    success_url = reverse_lazy("task_manager:worker-list")
+    success_url = reverse_lazy("task_manager:position-list")
 
 
 class TaskTypeListView(LoginRequiredMixin, generic.ListView):
@@ -190,7 +190,7 @@ class TaskTypeListView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(TaskTypeListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
-        context["search_form"] = PositionSearchForm(initial={"name": name})
+        context["search_form"] = TaskTypeSearchForm(initial={"name": name})
 
         return context
 
@@ -239,11 +239,12 @@ def login_view(request):
                 login(request, user)
                 return redirect("/")
             else:
-                msg = 'Invalid credentials'
+                msg = "Invalid credentials"
         else:
-            msg = 'Error validating the form'
+            msg = "Error validating the form"
 
-    return render(request, "registration/login.html", {"form": form, "msg": msg})
+    return render(request, "registration/login.html",
+                  {"form": form, "msg": msg})
 
 
 class RegisterUserView(CreateView):

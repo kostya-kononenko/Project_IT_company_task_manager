@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "bootstrap4",
     "crispy_bootstrap4",
     "crispy_forms",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -54,6 +55,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "it_company_task_manager.urls"
@@ -146,3 +148,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 ASSETS_ROOT = "/static/assets"
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

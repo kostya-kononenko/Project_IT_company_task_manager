@@ -1,0 +1,82 @@
+  <!-- Navbar -->
+  <div class="container position-sticky z-index-sticky top-0">
+    <div class="row">
+      <div class="col-12">
+
+        <nav class="navbar navbar-expand-lg  blur border-radius-xl mt-4 top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+
+
+          <div class="container-fluid px-0">
+
+
+
+           <a href="{{ user.get_absolute_url }}"> {{ user.get_username }}</a>
+
+            <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
+
+              <ul class="navbar-nav navbar-nav-hover ms-auto">
+
+                <li class="nav-item mx-4">
+                  <a class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+                     aria-current="page" href="{% url "task_manager:index" %}">
+                    <i class="material-icons opacity-6 me-2 text-md">dashboard</i>
+                    Home
+                  </a>
+                </li>
+
+
+                <li class="nav-item mx-4">
+                  <a class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+                     aria-current="page" href="{% url "task_manager:task-list" %}" title="See all tasks">
+                    <i class="material-icons opacity-6 me-2 text-md">view_day</i>
+                    Tasks
+                  </a>
+                </li>
+
+
+              <li class="nav-item mx-4">
+                  <a class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+                     aria-current="page" href="{% url "task_manager:worker-list" %}" title="See all workers">
+                    <i class="material-icons opacity-6 me-2 text-md">article</i>
+                    Workers
+                  </a>
+                </li>
+
+
+              <li class="nav-item mx-4">
+                  <a class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+                     aria-current="page" href="{% url "task_manager:position-list" %}" title="See all positions">
+                    <i class="material-icons opacity-6 me-2 text-md">view_day</i>
+                    Positions
+                  </a>
+                </li>
+
+
+              <li class="nav-item mx-4">
+                  <a class="nav-link ps-2 d-flex cursor-pointer align-items-center"
+                     aria-current="page" href="{% url "task_manager:task-types-list" %}" title="See all task type">
+                    <i class="material-icons opacity-6 me-2 text-md">dashboard</i>
+                    Task type
+                  </a>
+                </li>
+
+
+                {% if request.user.is_authenticated %}
+                  <li class="nav-item ms-lg-auto mx-4">
+                    <a class="nav-link nav-link-icon me-2"
+                      href="{% url 'logout' %}">
+                      <i class="fa fa-sign-out me-1"></i>
+                      <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Sign OUT">Logout</p>
+                    </a>
+                  </li>
+                {% endif %}
+
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <!-- End Navbar -->
+      </div>
+    </div>
+  </div>

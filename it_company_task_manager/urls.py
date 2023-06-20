@@ -24,17 +24,22 @@ from task_manager.views import login_view, RegisterUserView
 urlpatterns = [
     path("admin/", admin.site.urls),
 
-    path('accounts/login/',
+    path("accounts/login/",
          login_view,
-         name='login'),
+         name="login"),
 
-    path('accounts/logout/',
+    path("accounts/logout/",
          login_view,
-         name='logout'),
+         name="logout"),
 
     path("accounts/register/",
          RegisterUserView.as_view(),
          name="register"),
 
-    path("", include("task_manager.urls", namespace="task_manager")),
+    path("__debug__/",
+         include("debug_toolbar.urls")),
+
+    path("",
+         include("task_manager.urls",
+                 namespace="task_manager")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

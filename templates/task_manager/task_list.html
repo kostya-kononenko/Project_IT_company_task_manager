@@ -1,20 +1,18 @@
-{% extends "base.html" %}
+{% extends "layouts/base-task-manager.html" %}
 {% load crispy_forms_filters %}
 
 
 {% block content %}
-  <h1>Tasks list</h1>
-  <br>
+  <h2>Tasks list</h2>
   {% block search %}
     {% include "includes/search.html" %}
   {% endblock %}
-  <br>
   <p>All tasks: {{ count_all_task }} </p>
   <p>Completed tasks: {{ count_completed_task }} </p>
   <p>Current tasks: {{ count_current_task }}</p>
-    <br><br>
+    <br>
   {% if task_list %}
-    <a href="{% url 'task_manager:task-create' %}" class="btn btn-success">Create task</a>
+    <a href="{% url 'task_manager:task-create' %}" class="btn bg-gradient-dark">Create</a>
     <br><br>
     <table class="table">
       <tr>
@@ -42,6 +40,11 @@
       </tr>
     {% endfor %}
     </table>
+    <div class="container">
+    {% block pagination %}
+        {% include "includes/pagination.html" %}
+    {% endblock %}
+      </div>
     {% else %}
       <p>There are no tasks in the company.</p>
     {% endif %}
