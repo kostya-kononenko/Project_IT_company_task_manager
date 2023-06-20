@@ -66,7 +66,7 @@ urlpatterns = [
         name="worker-detail"
     ),
 
-    path("workers/create",
+    path("workers/create/",
          WorkerCreateView.as_view(),
          name="worker-create"),
 
@@ -88,7 +88,7 @@ urlpatterns = [
         name="position-detail"
     ),
 
-    path("positions/create",
+    path("positions/create/",
          PositionCreateView.as_view(),
          name="position-create"),
 
@@ -110,7 +110,7 @@ urlpatterns = [
         name="task-types-detail"
     ),
 
-    path("tasktypes/create",
+    path("tasktypes/create/",
          TaskTypeCreateView.as_view(),
          name="task-types-create"),
 
