@@ -42,11 +42,13 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
         context = super(TaskListView, self).get_context_data(**kwargs)
         name = self.request.GET.get("name", "")
         context["search_form"] = TaskSearchForm(initial={"name": name})
-        context["count_all_task"] = Task.objects.all().count()
-        context["count_completed_task"] = Task.objects.filter(
-            is_completed=True).count()
-        context["count_current_task"] = Task.objects.filter(
-            is_completed=False).count()
+        tasks = Task.objects.all()
+        total = tasks.count()
+        completed = tasks.filter(is_completed=True).count()
+        uncompleted = total - completed
+        context["count_all_task"] = total
+        context["count_completed_task"] = completed
+        context["count_current_task"] = uncompleted
 
         return context
 
