@@ -3,9 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views import generic
+from django.views import generic, View
 from django.views.generic import CreateView
 
+from task_manager import forms
 from task_manager.forms import (
     WorkerUserCreationForm,
     TaskSearchForm,
@@ -226,27 +227,34 @@ class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     success_url = reverse_lazy("task_manager:task-types-list")
 
 
-def login_view(request):
-    form = LoginForm(request.POST or None)
+class LoginPageView(View):
+    template_name = "registration/login.html"
+    form_class = forms.LoginForm
 
-    msg = None
+    def get(self, request):
+        form = self.form_class()
+        message = ''
+        return render(request, self.template_name, context={
+            "form": form,
+            "message": message
+        }
+                      )
 
-    if request.method == "POST":
-
+    def post(self, request):
+        form = self.form_class(request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password")
-            user = authenticate(username=username, password=password)
+            user = authenticate(
+                username=form.cleaned_data["username"],
+                password=form.cleaned_data["password"],
+            )
             if user is not None:
                 login(request, user)
                 return redirect("/")
-            else:
-                msg = "Invalid credentials"
-        else:
-            msg = "Error validating the form"
-
-    return render(request, "registration/login.html",
-                  {"form": form, "msg": msg})
+        message = "Login failed!"
+        return render(request, self.template_name, context={
+            "form": form,
+            "message": message}
+                      )
 
 
 class RegisterUserView(CreateView):

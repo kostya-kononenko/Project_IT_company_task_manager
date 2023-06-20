@@ -19,17 +19,17 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from task_manager.views import login_view, RegisterUserView
+from task_manager.views import RegisterUserView, LoginPageView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
 
     path("accounts/login/",
-         login_view,
+         LoginPageView.as_view(),
          name="login"),
 
     path("accounts/logout/",
-         login_view,
+         LoginPageView.as_view(),
          name="logout"),
 
     path("accounts/register/",
