@@ -9,9 +9,9 @@
   <p>Number of all workers: {{ count_all_workers }}  </p>
 
     <br>
-    {% if worker_list %}
-        <a href="{% url "task_manager:worker-create" %}" class="btn bg-gradient-dark">Create</a>
+    <a href="{% url "task_manager:worker-create" %}" class="btn bg-gradient-dark">Create</a>
         <br><br>
+    {% if worker_list %}
     <table class="table">
       <tr>
         <th>ID</th>

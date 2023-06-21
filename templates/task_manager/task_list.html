@@ -11,9 +11,9 @@
   <p>Completed tasks: {{ count_completed_task }} </p>
   <p>Current tasks: {{ count_current_task }}</p>
     <br>
-  {% if task_list %}
-    <a href="{% url 'task_manager:task-create' %}" class="btn bg-gradient-dark">Create</a>
+  <a href="{% url 'task_manager:task-create' %}" class="btn bg-gradient-dark">Create</a>
     <br><br>
+  {% if task_list %}
     <table class="table">
       <tr>
         <th>ID</th>

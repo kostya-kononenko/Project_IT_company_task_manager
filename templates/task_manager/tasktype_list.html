@@ -5,9 +5,9 @@
    {% block search %}
      {% include "includes/search.html" %}
    {% endblock %}
-  {% if tasktype_list %}
-    <a href="{% url 'task_manager:task-types-create' %}" class="btn bg-gradient-dark">Create</a>
+  <a href="{% url 'task_manager:task-types-create' %}" class="btn bg-gradient-dark">Create</a>
     <br><br>
+  {% if tasktype_list %}
     <table class="table">
       <tr>
         <th>ID</th>
