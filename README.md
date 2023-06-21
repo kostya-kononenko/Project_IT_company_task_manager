@@ -18,6 +18,10 @@ Also in this project, user registration at the entrance is implemented.
 4. Create superuser to use Django admin panel: python manage.py createsuperuser
 5. Run the project: python manage.py runserver
 
+### Click it out!
+
+[Library project deployed to Render](https://task-manger-project.onrender.com/)
+
 ### Project picture
 
 ![Снимок экрана от 2023-06-20 10-06-11](https://github.com/kostya-kononenko/Project_IT_company_task_manager/assets/107486491/fd492f4b-0acf-49c2-b007-16984972e8f9)
