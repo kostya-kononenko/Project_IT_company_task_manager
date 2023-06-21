@@ -22,6 +22,12 @@ Also in this project, user registration at the entrance is implemented.
 
 [Library project deployed to Render](https://task-manger-project.onrender.com/)
 
+You can login using:
+login: admin
+password: admin12345
+
+or you can create your own user on the start page
+
 ### Project picture
 
 ![Снимок экрана от 2023-06-20 10-06-11](https://github.com/kostya-kononenko/Project_IT_company_task_manager/assets/107486491/fd492f4b-0acf-49c2-b007-16984972e8f9)
